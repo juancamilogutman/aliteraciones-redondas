@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-display: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  /* Rock-and-roll palette — readable on light bg */
+  --ar-color-1: #d11149;
+  --ar-color-2: #f17105;
+  --ar-color-3: #1a8fe3;
+  --ar-color-4: #6610f2;
+  --ar-color-5: #00a878;
+}
+
+.dark {
+  /* Vibrant variants for dark bg */
+  --ar-color-1: #ff4f7a;
+  --ar-color-2: #ffb020;
+  --ar-color-3: #4fc3ff;
+  --ar-color-4: #b388ff;
+  --ar-color-5: #4ade80;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  font-family: var(--font-sans);
+}
+
+.aliteracion {
+  @apply leading-relaxed;
+}
+
+.aliteracion .color-1 { color: var(--ar-color-1); font-weight: 700; }
+.aliteracion .color-2 { color: var(--ar-color-2); font-weight: 700; }
+.aliteracion .color-3 { color: var(--ar-color-3); font-weight: 700; }
+.aliteracion .color-4 { color: var(--ar-color-4); font-weight: 700; }
+.aliteracion .color-5 { color: var(--ar-color-5); font-weight: 700; }
+
+.palette-swatch.color-1 { background-color: var(--ar-color-1); }
+.palette-swatch.color-2 { background-color: var(--ar-color-2); }
+.palette-swatch.color-3 { background-color: var(--ar-color-3); }
+.palette-swatch.color-4 { background-color: var(--ar-color-4); }
+.palette-swatch.color-5 { background-color: var(--ar-color-5); }
