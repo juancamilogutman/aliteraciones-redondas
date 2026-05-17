@@ -11,7 +11,7 @@ export function AppShell() {
             <h1 className="text-lg font-semibold tracking-tight">
               Aliteraciones <span className="text-rose-600 group-hover:text-rose-500 dark:text-rose-400">Nacionales</span>
             </h1>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Letras y rimas internas del rock argentino</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Letras nuestras</p>
           </Link>
           <div className="flex items-center gap-3">
             <AccountMenu />
