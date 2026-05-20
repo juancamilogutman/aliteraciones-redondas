@@ -9,7 +9,7 @@ export function AppShell() {
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
           <Link to="/" className="group">
             <h1 className="text-lg font-semibold tracking-tight">
-              Aliteraciones <span className="text-rose-600 group-hover:text-rose-500 dark:text-rose-400">Nacionales</span>
+              Aliter<span className="text-[#74ACDF] group-hover:text-[#9BC3E6]">acion</span><span className="text-[#F6B40E] group-hover:text-[#F9C846]">es</span> <span className="text-[#74ACDF] group-hover:text-[#9BC3E6]">Nacion</span>al<span className="text-[#F6B40E] group-hover:text-[#F9C846]">es</span>
             </h1>
             <p className="text-xs text-slate-500 dark:text-slate-400">Letras nuestras</p>
           </Link>
