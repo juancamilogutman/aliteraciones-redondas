@@ -5,7 +5,7 @@
 @theme {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  --font-display: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Stalinist One", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -31,8 +31,12 @@ html, body, #root {
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  @apply bg-slate-50 text-slate-900 antialiased dark:text-slate-100;
   font-family: var(--font-sans);
+}
+
+.dark body {
+  background-color: #0a0a0a;
 }
 
 .aliteracion {
