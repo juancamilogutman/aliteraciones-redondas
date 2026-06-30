@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp, Disc3, Pencil, Plus, Trash2 } from 'lucide-reac
 import { useBands } from '@/hooks/useDiscography'
 import { useAuth } from '@/hooks/useAuth'
 import { canDelete, createBand, deleteBand, swapDisplayOrder, updateBand } from '@/lib/disco'
-import { slugify } from '@/lib/slug'
+import { slugify, uniqueSlug } from '@/lib/slug'
 import type { Band } from '@/lib/database.types'
 import { IconButton } from '@/components/IconButton'
 
@@ -47,8 +47,9 @@ export function Home() {
       {adding && (
         <BandForm
           onCancel={() => setAdding(false)}
-          onSubmit={async ({ name }) => {
-            await withReload(() => createBand(name, (bands[bands.length - 1]?.display_order ?? -1) + 1))
+          onSubmit={async ({ name, slug }) => {
+            const order = (bands[bands.length - 1]?.display_order ?? -1) + 1
+            await withReload(() => createBand(name, uniqueSlug(slug, bands.map((b) => b.slug)), order))
             setAdding(false)
           }}
         />

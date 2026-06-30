@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp, Pencil, Plus, Trash2 } from 'lucide-react'
 import { useAlbumWithSongs } from '@/hooks/useDiscography'
 import { useAuth } from '@/hooks/useAuth'
 import { canDelete, createSong, deleteSong, swapTrackNumber, updateSong } from '@/lib/disco'
-import { slugify } from '@/lib/slug'
+import { slugify, uniqueSlug } from '@/lib/slug'
 import { IconButton } from '@/components/IconButton'
 import type { Song } from '@/lib/database.types'
 
@@ -61,9 +61,11 @@ export function AlbumView() {
       {adding && (
         <SongForm
           onCancel={() => setAdding(false)}
-          onSubmit={async ({ title, lyrics }) => {
+          onSubmit={async ({ title, slug, lyrics }) => {
             const nextTrack = Math.max(0, ...songs.map((s) => s.track_number ?? 0)) + 1
-            await withReload(() => createSong(album.id, title, lyrics, nextTrack))
+            await withReload(() =>
+              createSong(album.id, title, uniqueSlug(slug, songs.map((s) => s.slug)), lyrics, nextTrack),
+            )
             setAdding(false)
           }}
         />

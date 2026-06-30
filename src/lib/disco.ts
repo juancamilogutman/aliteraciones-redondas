@@ -1,14 +1,13 @@
 import { supabase } from '@/lib/supabase'
-import { slugify } from '@/lib/slug'
 
 // ---------------------------------------------------------------------------
 // Bands
 // ---------------------------------------------------------------------------
 
-export async function createBand(name: string, displayOrder: number): Promise<void> {
+export async function createBand(name: string, slug: string, displayOrder: number): Promise<void> {
   const { error } = await supabase
     .from('bands')
-    .insert({ name, slug: slugify(name), display_order: displayOrder })
+    .insert({ name, slug, display_order: displayOrder })
   if (error) throw error
 }
 
@@ -32,12 +31,13 @@ export async function deleteBand(id: string): Promise<void> {
 export async function createAlbum(
   bandId: string,
   name: string,
+  slug: string,
   year: number | null,
   displayOrder: number,
 ): Promise<void> {
   const { error } = await supabase
     .from('albums')
-    .insert({ band_id: bandId, name, slug: slugify(name), year, display_order: displayOrder })
+    .insert({ band_id: bandId, name, slug, year, display_order: displayOrder })
   if (error) throw error
 }
 
@@ -61,12 +61,13 @@ export async function deleteAlbum(id: string): Promise<void> {
 export async function createSong(
   albumId: string,
   title: string,
+  slug: string,
   lyrics: string,
   trackNumber: number | null,
 ): Promise<void> {
   const { error } = await supabase
     .from('songs')
-    .insert({ album_id: albumId, title, slug: slugify(title), lyrics, track_number: trackNumber })
+    .insert({ album_id: albumId, title, slug, lyrics, track_number: trackNumber })
   if (error) throw error
 }
 

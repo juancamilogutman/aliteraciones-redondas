@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp, Pencil, Plus, Trash2 } from 'lucide-react'
 import { useBandWithAlbums } from '@/hooks/useDiscography'
 import { useAuth } from '@/hooks/useAuth'
 import { canDelete, createAlbum, deleteAlbum, swapDisplayOrder, updateAlbum } from '@/lib/disco'
-import { slugify } from '@/lib/slug'
+import { slugify, uniqueSlug } from '@/lib/slug'
 import { IconButton } from '@/components/IconButton'
 import type { Album } from '@/lib/database.types'
 
@@ -53,8 +53,11 @@ export function BandView() {
       {adding && (
         <AlbumForm
           onCancel={() => setAdding(false)}
-          onSubmit={async ({ name, year }) => {
-            await withReload(() => createAlbum(band.id, name, year, (albums[albums.length - 1]?.display_order ?? -1) + 1))
+          onSubmit={async ({ name, year, slug }) => {
+            const order = (albums[albums.length - 1]?.display_order ?? -1) + 1
+            await withReload(() =>
+              createAlbum(band.id, name, uniqueSlug(slug, albums.map((a) => a.slug)), year, order),
+            )
             setAdding(false)
           }}
         />
